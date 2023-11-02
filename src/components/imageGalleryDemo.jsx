@@ -15,7 +15,7 @@ const ImageGalleryDemo = () => {
     { id: "10", src: "/images/image-10.jpeg", title: "Image 10" },
   ]);
   const [selectedImages, setSelectedImages] = useState([]);
-  const [isReordering, setIsReordering] = useState(false);
+  // const [isReordering, setIsReordering] = useState(false);
 
   // Function to handle the drag and drop functionality
   const handleDragStart = (image) => {
@@ -37,7 +37,7 @@ const ImageGalleryDemo = () => {
 
   // Function to handle reordering images during drag and drop
   const handleDragOver = (image) => {
-    if (isReordering) {
+    // if (isReordering) {
       const newImages = [...images];
       const draggingIndex = newImages.findIndex((img) => img.isDragging);
       const targetIndex = newImages.findIndex((img) => img.id === image.id);
@@ -47,7 +47,7 @@ const ImageGalleryDemo = () => {
         const [draggingImage] = newImages.splice(draggingIndex, 1);
         newImages.splice(targetIndex, 0, draggingImage);
         setImages(newImages);
-      }
+      // }
     }
   };
 
@@ -62,42 +62,54 @@ const ImageGalleryDemo = () => {
   //     setImages([...images, ...newImages]);
   //   };
 
-
-
   // Function to handle image uploads
+  // const handleImageUpload = (e) => {
+  //   if (images.length >= 11) {
+  //     alert("You already have 11 images. You can't upload more.");
+  //     return;
+  //   }
   const handleImageUpload = (e) => {
     if (images.length >= 11) {
       alert("You already have 11 images. You can't upload more.");
       return;
     }
-
-    const files = e.target.files;
-    const newImages = Array.from(files).map((file, index) => ({
-      id: `new-${index}`,
-      src: URL.createObjectURL(file),
-      title: file.name,
-    }));
-    setImages([...images, ...newImages]);
+  
+    const file = e.target.files[0];
+    if (file) {
+      const newImage = {
+        id: `new-${images.length + 1}`,
+        src: URL.createObjectURL(file),
+        title: file.name,
+      };
+      setImages([...images, newImage]);
+    }
+    e.target.value = null; // Reset the file input field
   };
 
+  //   const files = e.target.files;
+  //   const newImages = Array.from(files).map((file, index) => ({
+  //     id: `new-${index}`,
+  //     src: URL.createObjectURL(file),
+  //     title: file.name,
+  //   }));
+  //   setImages([...images, ...newImages]);
+  // };
 
-
-
-//   const handleImageUpload = (e) => {
-//     const files = e.target.files;
-//     const newImages = Array.from(files).map((file, index) => ({
-//       id: `new-${index}`,
-//       src: URL.createObjectURL(file),
-//       title: file.name,
-//     }));
-//     setImages([...images, ...newImages]);
-//   };
+  //   const handleImageUpload = (e) => {
+  //     const files = e.target.files;
+  //     const newImages = Array.from(files).map((file, index) => ({
+  //       id: `new-${index}`,
+  //       src: URL.createObjectURL(file),
+  //       title: file.name,
+  //     }));
+  //     setImages([...images, ...newImages]);
+  //   };
 
   // Function to toggle the reorder mode
 
-  const toggleReorder = () => {
-    setIsReordering((prev) => !prev);
-  };
+  // const toggleReorder = () => {
+  //   setIsReordering((prev) => !prev);
+  // };
 
   // Function to delete selected images
   const deleteSelectedImages = () => {
@@ -119,8 +131,10 @@ const ImageGalleryDemo = () => {
   };
 
   return (
-    <div className=" w-3/5 bg-white rounded-xl top-20 left-80 absolute shadow-md">
-      <div className="flex justify-between border-b p-3 px-9">
+    <div className={`bg-white rounded-xl h-auto shadow-md sm:pb-6 ${
+      images.length < 4 ? "sm:pb-2" : "pb-8"
+    }`}>
+      <div className="flex justify-between border-b py-4 px-9">
         <div>
           {selectedImages.length > 0 ? (
             <h1 className="text-2xl font-bold">
@@ -150,33 +164,33 @@ const ImageGalleryDemo = () => {
           <div className="mt-2 flex">
             <button
               onClick={deleteSelectedImages}
-              className="px-4 text-red-500 font-bold cursor-pointer mr-4"
+              className="px-4 text-red-500 font-semibold cursor-pointer mr-4"
               hidden={selectedImages.length === 0}
             >
-              Delete Selected
+              Delete files
             </button>
-            <span
+            {/* <span
               onClick={toggleReorder}
-              className="px-4 text-blue-500 font-bold cursor-pointer mr-4"
+              className="px-4 text-blue-500 font-semibold cursor-pointer mr-4"
             >
               {isReordering ? "Done" : "Reorder"}
-            </span>
+            </span> */}
           </div>
         </div>
       </div>
 
       <div
-        className={`grid grid-cols-5 ${
-          images.length > 5 ? "grid-rows-3" : ""
-        } pt-8 px-6`}
+        className={`grid grid-cols-2 md:grid-cols-5 sm:grid-cols-3 ${
+          images.length > 4 ? "sm:grid-rows-3" : "sm:grid-rows-1"
+        } pt-8 px-6 h-auto`}
       >
         {images.map((image, index) => (
           <div
             key={index}
-            className={`w-[12rem] px-2 mb-4 cursor-pointer relative ${
+            className={`w-[12rem] sm:mb-4 px-2 cursor-pointer relative  ${
               index === 0 && images.length > 5
-                ? "col-span-2 row-span-2"
-                : "col-span-1"
+                ? "sm:col-span-2 sm:row-span-2"
+                : "sm:col-span-1"
             } `}
             onClick={() => toggleSelectImage(image.id)}
           >
@@ -207,7 +221,8 @@ const ImageGalleryDemo = () => {
             />
           </div>
         ))}
-        <label className="bg-slate-100 mx-4 w-[11rem] h-[11rem] rounded-lg border-2 border-dotted border-slate-400 cursor-pointer ">
+
+        <label className="bg-slate-100 mx-4 w-[11rem] h-[11rem] rounded-lg border-2 border-dotted border-slate-400 cursor-pointer">
           <input
             type="file"
             accept="image/*"
