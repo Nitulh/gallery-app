@@ -51,7 +51,7 @@ The gallery offers a smooth and responsive user experience with transitions and 
        - Node.js 16+ 
 
 ## Live Demo
-You can interact with the live demo of the image gallery on Demo Link[https://pages.github.com/](https://gallery-tailwind-app.vercel.app/).
+You can interact with the live demo of the image gallery on [Demo Link](https://gallery-tailwind-app.vercel.app/).
 
 ## Technologies Used
 React JS
