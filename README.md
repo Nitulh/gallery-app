@@ -50,6 +50,16 @@ The gallery offers a smooth and responsive user experience with transitions and 
 
        - Node.js 16+ 
 
+## Live Demo
+You can interact with the live demo of the image gallery on Demo Link[https://pages.github.com/](https://gallery-tailwind-app.vercel.app/).
+
+## Technologies Used
+React JS
+Tailwind css
+- packages:
+  - react-dnd
+  - react-toastify
+
 ## Installation
 
 To run this project locally, follow these steps:
@@ -60,16 +70,8 @@ To run this project locally, follow these steps:
 
 ```bash
 npm install
-npm run dev```
+npm run dev
 
 
-## Live Demo
-You can interact with the live demo of the image gallery on Demo Link[https://pages.github.com/](https://gallery-tailwind-app.vercel.app/).
 
-## Technologies Used
-React JS
-Tailwind css
-- packages:
-  - react-dnd
-  - react-toastify
 
