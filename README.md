@@ -44,7 +44,7 @@ The feature image is set by sorting, with the first image (from left to right) b
 
 The gallery offers a smooth and responsive user experience with transitions and animations for a polished look and feel.
 
-- `Prerequisites:` 
+- Prerequisites: 
  
  Before deploying the landing-page-task, make sure you have the following prerequisites in place:
 
@@ -60,11 +60,11 @@ To run this project locally, follow these steps:
 
 ```bash
 npm install
-npm start
+npm run dev
 
 
 ## Live Demo
-You can interact with the live demo of the image gallery on Demo Link.
+You can interact with the live demo of the image gallery on Demo Link[https://pages.github.com/](https://gallery-tailwind-app.vercel.app/).
 
 ## Technologies Used
 React JS
