@@ -5,6 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 import DeletetionModal from "./deletionModal";
 
 const ImageGallery = () => {
+  // Define an initial array of images with their properties.
+  // You can replace these placeholders with actual image data.
+  // Each image has an 'id', 'src', and 'title' property.
   const [images, setImages] = useState([
     { id: "1", src: "/images/image-1.webp", title: "Image 1" },
     { id: "2", src: "/images/image-2.webp", title: "Image 2" },
@@ -17,12 +20,11 @@ const ImageGallery = () => {
     { id: "9", src: "/images/image-9.webp", title: "Image 9" },
     { id: "10", src: "/images/image-10.jpeg", title: "Image 10" },
   ]);
-  const [selectedImages, setSelectedImages] = useState([]);
-  // const [isReordering, setIsReordering] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]); // Keeps track of selected images
 
   // Function to handle the drag and drop functionality
   const handleDragStart = (image) => {
-    // Mark the image as dragging
+    // Mark the image as dragging by updating the 'isDragging' property.
     setImages((prevImages) =>
       prevImages.map((img) =>
         img.id === image.id ? { ...img, isDragging: true } : img
@@ -32,7 +34,7 @@ const ImageGallery = () => {
 
   // Function to handle the end of the drag operation
   const handleDragEnd = () => {
-    // Mark all images as not dragging
+    // Mark all images as not dragging by updating the 'isDragging' property.
     setImages((prevImages) =>
       prevImages.map((img) => ({ ...img, isDragging: false }))
     );
@@ -40,7 +42,7 @@ const ImageGallery = () => {
 
   // Function to handle reordering images during drag and drop
   const handleDragOver = (image) => {
-    // if (isReordering) {
+    // This function is meant for reordering images during drag and drop
     const newImages = [...images];
     const draggingIndex = newImages.findIndex((img) => img.isDragging);
     const targetIndex = newImages.findIndex((img) => img.id === image.id);
@@ -58,6 +60,9 @@ const ImageGallery = () => {
 
   const handleImageUpload = (e) => {
     if (images.length >= 11) {
+      // Display an error message if there are already 11 images.
+      // Configure the toast message properties.
+      // This uses the "react-toastify" library.
       toast.error("You already have 11 images. You cant upload more!", {
         position: "top-right",
         autoClose: 5000,
@@ -73,12 +78,15 @@ const ImageGallery = () => {
 
     const file = e.target.files[0];
     if (file) {
+      // Create a new image object from the uploaded file and add it to the 'images' array.
       const newImage = {
         id: `new-${images.length + 1}`,
         src: URL.createObjectURL(file),
         title: file.name,
       };
       setImages([...images, newImage]);
+      // Display a success message for the uploaded image.
+      // Configure the toast message properties.
       toast.success("Image uploaded!", {
         position: "top-right",
         autoClose: 5000,
@@ -95,38 +103,45 @@ const ImageGallery = () => {
 
   // Function to delete selected images
   const deleteSelectedImages = () => {
+    // Remove selected images from the 'images' array.
     setImages((prevImages) =>
       prevImages.filter((img) => !selectedImages.includes(img.id))
     );
-    setSelectedImages([]);
+    setSelectedImages([]); // Clear the selection.
   };
 
   // Function to toggle the selection of an image
   const toggleSelectImage = (imageId) => {
     setSelectedImages((prevSelected) => {
       if (prevSelected.includes(imageId)) {
+        // If the image is already selected, remove it from the selected images.
         return prevSelected.filter((id) => id !== imageId);
       } else {
+        // If the image is not selected, add it to the selected images.
         return [...prevSelected, imageId];
       }
     });
   };
 
+  // State for managing the deletion modal
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [imageToDelete, setImageToDelete] = useState(null);
 
   const openDeleteModal = (imageId, image) => {
+    // Set the image to be deleted and open the deletion modal.
     setImageToDelete(image);
     setDeleteModalOpen(true);
   };
 
   const deleteImage = () => {
     if (imageToDelete) {
+      // Delete the image and display a success message.
       deleteSelectedImages();
 
       setImages((prevImages) =>
         prevImages.filter((img) => img.id !== imageToDelete.id)
       );
+      // Configure the toast message properties.
       toast.success("Image deleted", {
         position: "top-right",
         autoClose: 3000, // Adjust the duration as needed
@@ -137,11 +152,12 @@ const ImageGallery = () => {
         progress: undefined,
         theme: "light",
       });
-      closeDeleteModal();
+      closeDeleteModal(); // Close the deletion modal.
     }
   };
 
   const closeDeleteModal = () => {
+    // Close the deletion modal and clear the image to be deleted.
     setDeleteModalOpen(false);
     setImageToDelete(null);
   };

@@ -1,8 +1,12 @@
 
 
+
+// The comment indicates that ESLint should ignore prop type checking for this component.
 // eslint-disable-next-line react/prop-types
 const DeletetionModal = ({ isOpen, onClose, onConfirm }) => {
+  // This functional component takes three props: 'isOpen', 'onClose', and 'onConfirm'.
     if (!isOpen) return null;
+    // If the 'isOpen' prop is false, the modal is not displayed, and 'null' is returned.
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
