@@ -60,7 +60,7 @@ To run this project locally, follow these steps:
 
 ```bash
 npm install
-npm run dev
+npm run dev```
 
 
 ## Live Demo
