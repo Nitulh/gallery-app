@@ -163,6 +163,7 @@ const ImageGallery = () => {
   };
 
   return (
+    <div className="bg-slate-200 h-auto flex justify-center py-10 px-2">
     <div
       className={`bg-white rounded-xl h-auto shadow-md sm:pb-6 ${
         images.length < 4 ? "sm:pb-2" : "pb-8"
@@ -277,6 +278,7 @@ const ImageGallery = () => {
           </div>
         </label>
       </div>
+    </div>
     </div>
   );
 };

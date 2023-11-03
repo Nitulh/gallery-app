@@ -34,7 +34,7 @@ const Image = ({
           src={image.src}
           alt={image.title}
           className={`w-full ${
-            index === 0 && images.length > 5 ? "h-[9rem] sm:h-[24rem]" : "sm:h-[11rem]"
+            index === 0 && images.length > 5 ? "h-[9rem] sm:h-[24rem]" : "h-[9rem] sm:h-[11rem]"
           } object-cover bg-white rounded-lg border border-slate-400 relative z-0`}
         />
       </div>
