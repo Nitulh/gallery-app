@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import GalleryItem from "./GalleryItem";
 import ConfirmModal from "./ConfirmModal";
 
-const ImageGallery = () => {
+const GalleryImage = () => {
   const [images, setImages] = useState([
     { id: "1", src: "/images/image-1.webp", title: "Headphone blue" },
     { id: "2", src: "/images/image-2.webp", title: "Headphone green" },
@@ -265,4 +265,4 @@ const ImageGallery = () => {
   );
 };
 
-export default ImageGallery;
+export default GalleryImage;
