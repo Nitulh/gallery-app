@@ -1,7 +1,8 @@
+// eslint-disable-next-line react/prop-types
 import { useState, useRef, useCallback } from "react"; // Added useEffect for debugging
 import { toast } from "react-toastify";
-import GalleryItem from "./GalleryItem.jsx";
-import ConfirmModal from "./ConfirmModal.jsx";
+import GalleryItem from './GalleryItem.jsx';
+import ConfirmModal from './ConfirmModal.jsx';
 
 const ImageGallery = () => {
   const [images, setImages] = useState([
