@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react"; // Added useEffect for debugging
 import { toast } from "react-toastify";
-import GalleryItem from "./GalleryItem";
-import ConfirmModal from "./ConfirmModal";
+import GalleryItem from "./GalleryItem.jsx";
+import ConfirmModal from "./ConfirmModal.jsx";
 
 const ImageGallery = () => {
   const [images, setImages] = useState([

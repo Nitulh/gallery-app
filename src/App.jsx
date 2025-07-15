@@ -1,5 +1,6 @@
-import ImageGallery from "./components/ImageGallery";
-import HeroSection from "./components/HeroSection";
+// src/App.jsx
+import ImageGallery from "./components/ImageGallery.jsx"; // Ensure this matches the actual file name
+import HeroSection from "./components/HeroSection.jsx"; // Ensure this matches the actual file name
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
